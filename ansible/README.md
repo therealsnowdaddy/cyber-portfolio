@@ -106,20 +106,22 @@ Further information can be found in the following diagrams:
 
 ## Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it saves time and effort. Instantly configures new systems by running an existing playbook, and just as easily, keeps those same systems up to date with a simple change of a version number. What could be better?
 
-The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+The playbook enacts the following tasks for machines in the host group `[elkstack]`:
+- Becomes admin user
+- Ensures `apache2` is not installed
+- Installs `Docker.io`, `Python PIP`, and `Docker PIP`
+- Increase Maximum Virtual Memory to `262144`
+    - Persist Increase of System Memory Usage
+- Install ELK Image and open necessary ports
+    - Image `sebp/elk:761`
+    - Ports `5601:5601`, `9200:9200`, `5044:5044`
+- Make Docker Persistant via `systemd` Configuration
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-**Note**: The following image link needs to be updated. Replace `docker_ps_output.png` with the name of your screenshot image file.  
-
-
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![Output of 'docker ps' command on ELK machine](../images/docker-ps_out.png)
 
 ### Target Machines & Beats
 | This ELK server is configured to monitor the following machines: | We have installed the following Beats on these machines: |
@@ -137,7 +139,7 @@ These Beats allow us to collect the following information from each machine:
 | Metricbeat | Filebeat |
 |--|--|
 |||
-| d | d |
+| system-level CPU usage, memory, file system, disk IO, and network IO statistics |observability and security data sources that simplify the collection, parsing, and visualization of common log formats |
 
 ## Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -161,12 +163,22 @@ SSH into the control node and follow the steps below:
     - [Download example 'ansible.cfg' file](ansible.cfg)
 3. Add the following groups to`/etc/ansible/hosts` file on the Ansible control node.
     - `[elkstack]` The ELK Stack (Elasticsearch, Logstash, and Kibana) is installed to all machines in this group
+        ```
+        [elkstack]
+        10.2.1.4 ansible_python_interpreter=/usr/bin/python3
+        ```
 
     - `[elkagents]` The Metric- and Filebeats are installed to all machines listed under this group
+        ```
+        [elkagents]
+        10.0.1.5 ansible_python_interpreter=/usr/bin/python3
+        10.0.1.6 ansible_python_interpreter=/usr/bin/python3
+        10.0.1.7 ansible_python_interpreter=/usr/bin/python3
+        
+        10.2.1.4 ansible_python_interpreter=/usr/bin/python3
+        ```
+        
     - [Download example 'hosts' file](hosts)
 
 
-- Run the playbook, and navigate to `http://<ELKstack_IP>:5601` to check that the installation worked as expected.
-
-
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+4. Run the playbook, and navigate to `http://<ELKstack_IP>:5601` to check that the installation worked as expected.
