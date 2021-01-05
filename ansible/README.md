@@ -77,14 +77,14 @@ Machines within the network can only be accessed over SSH by way of the Ansible 
 A summary of the access policies in place can be found in the table below.
 
 | From \ To  | JumpBox | Web1 | Web2 | Web3 | ELKstackVM | *Internet* |
-|------------|----------|------|------|------|------------|
-| JumpBox   | X | TCP 22, 80; ICMP | TCP 22, 80; ICMP | TCP 22, 80; ICMP | TCP 22, 6501, 5044, 9200; ICMP | ANY |
+|------------|---------|------|------|------|------------|------------|
+| JumpBox    | X | TCP 22, 80; ICMP  | TCP 22, 80; ICMP  | TCP 22, 80; ICMP | TCP 22, 6501, 5044, 9200; ICMP | ANY |
 | Web1       | — | X | — | — | TCP 6501, 5044, 9200 | ANY |
 | Web2       | — | — | X | — | TCP 6501, 5044, 9200 | ANY |
 | Web3       | — | — | — | X | TCP 6501, 5044, 9200 | ANY |
-||||||||
+|            |   |   |   |   |                      |     |
 | ELKstackVM | — | — | — | — | X | ANY |
-||||||||
+|            |   |   |   |   |                      |     |
 | ***Internet*** | TCP 22* | TCP 80** | TCP 80** | TCP 80** | TCP 6501* | X |
 
 *From specific IP address(es) [listed above] ONLY. 
