@@ -1,0 +1,42 @@
+---
+- name: My Second Playbook
+  hosts: webservers
+  become: true
+  tasks:
+
+  - name: Uninstall apache2
+    apt:
+      name: apache2
+      state: absent
+
+  - name: Install Docker.io
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: docker.io
+      state: present
+
+  - name: Install Python PIP
+    apt:
+      force_apt_get: yes 
+      update_cache: yes
+      name: python3-pip
+      state: present
+
+  - name: Install Docker PIP
+    pip:
+      name: docker
+      state: present
+
+  - name: Install DVWA Image
+    docker_container:
+      name: dvwa
+      image: cyberxsecurity/dvwa
+      state: started
+      restart_policy: always
+      published_ports: 80:80
+
+  - name: Persistant Docker (systemd Configuration)
+    systemd:
+      name: docker
+      enabled: yes

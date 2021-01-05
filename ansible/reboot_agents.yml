@@ -1,0 +1,8 @@
+---
+- name: Reboot VMs
+  hosts: elkagents
+  become: true
+  tasks:
+    # Use command module
+  - name: Reboot machine in 1 minute
+    command: shutdown -r +1 "WARNING! System will reboot in 1 minute."

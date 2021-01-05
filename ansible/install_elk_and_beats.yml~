@@ -1,0 +1,35 @@
+---
+- name: Install Metricbeat
+  hosts: elkagents
+  become: true
+  tasks:
+    # Use command module
+  - name: Download Metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+
+    # Use command module
+  - name: Install Metricbeat
+    command: dpkg -i metricbeat-7.6.1-amd64.deb
+
+    # Use copy module
+  - name: Transfer Metricbeat Config file
+    copy:
+      src: /etc/ansible/files/metricbeat-config.yml
+      dest: /etc/metricbeat/metricbeat.yml
+
+    # Use command module
+  - name: Enable and configure Docker module for Metricbeat
+    command: metricbeat modules enable system
+
+    # Use command module
+  - name: Setup Metricbeat
+    command: metricbeat setup
+
+    # Use command module
+  - name: Start Metricbeat Daemon
+    command: service metricbeat start
+
+  - name: Persistant Metricbeat (systemd Configuration)
+    systemd:
+      name: metricbeat
+      enabled: yes

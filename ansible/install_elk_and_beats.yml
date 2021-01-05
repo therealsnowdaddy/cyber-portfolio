@@ -1,0 +1,127 @@
+---
+
+# PLAY 1 - INSTALL, LAUNCH, and PERSIST ELK Stack     
+
+- name: InstallElkstack
+  hosts: elkstack
+  become: true
+  tasks:
+
+  - name: Uninstall apache2
+    apt:
+      name: apache2
+      state: absent
+
+  - name: Install Docker.io
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: docker.io
+      state: present
+
+  - name: Install Python PIP
+    apt:
+      force_apt_get: yes 
+      update_cache: yes
+      name: python3-pip
+      state: present
+
+  - name: Install Docker PIP
+    pip:
+      name: docker
+      state: present
+
+  - name: Increase Virtual Memory
+    command: sysctl -w vm.max_map_count=262144
+
+  - name: Increase System Memory Usage
+    sysctl:
+      name: vm.max_map_count
+      value: 262144
+      state: present
+      reload: yes
+
+  - name: Install ELK Image
+    docker_container:
+      name: elk
+      image: sebp/elk:761
+      state: started
+      restart_policy: always
+      published_ports:
+        - 5601:5601
+        - 9200:9200
+        - 5044:5044
+
+  - name: Persistant Docker (systemd Configuration)
+    systemd:
+      name: docker
+      enabled: yes
+
+# PLAY 2 - INSTALL, LAUNCH, and PERSIST Metricbeat     
+
+- name: InstallMetricbeat
+  hosts: elkagents
+  become: true
+  tasks:
+    # Use command module
+  - name: Download Metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+
+    # Use command module
+  - name: Install Metricbeat
+    command: dpkg -i metricbeat-7.6.1-amd64.deb
+
+    # Use copy module
+  - name: Transfer Metricbeat Config file
+    copy:
+      src: /etc/ansible/files/metricbeat-config.yml
+      dest: /etc/metricbeat/metricbeat.yml
+
+    # Use command module
+  - name: Enable and configure Docker module for Metricbeat
+    command: metricbeat modules enable system
+
+    # Use command module
+  - name: Setup Metricbeat
+    command: metricbeat setup
+
+    # Use command module
+  - name: Start Metricbeat Daemon
+    command: service metricbeat start
+
+  - name: Persistant Metricbeat (systemd Configuration)
+    systemd:
+      name: metricbeat
+      enabled: yes
+      
+# PLAY 3 - INSTALL, LAUNCH, and PERSIST Filebeat     
+
+- name: InstallFilebeat
+  hosts: elkagents
+  become: yes
+  tasks:
+
+  - name: Download Filebeat deb
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
+ 
+  - name: Install Filebeat deb
+    command: dpkg -i filebeat-7.6.1-amd64.deb
+
+  - name: Transfer Filebeat.yml 
+    copy:
+      src: /etc/ansible/files/filebeat-config.yml
+      dest: /etc/filebeat/filebeat.yml
+
+  - name: Enable and configure Filebeat system module
+    command: filebeat modules enable system
+
+  - name: Setup Filebeat
+    command: filebeat setup
+
+  - name: Start Filebeat service
+    command: service filebeat start
+
+  - name: Persistant Filebeat (systemd Configuration)
+    systemd:
+      name: filebeat
+      enabled: yes

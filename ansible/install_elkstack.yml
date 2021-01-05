@@ -1,0 +1,55 @@
+---
+- name: Elk Stack
+  hosts: elkstack
+  become: true
+  tasks:
+
+  - name: Uninstall apache2
+    apt:
+      name: apache2
+      state: absent
+
+  - name: Install Docker.io
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: docker.io
+      state: present
+
+  - name: Install Python PIP
+    apt:
+      force_apt_get: yes 
+      update_cache: yes
+      name: python3-pip
+      state: present
+
+  - name: Install Docker PIP
+    pip:
+      name: docker
+      state: present
+
+  - name: Increase Virtual Memory
+    command: sysctl -w vm.max_map_count=262144
+
+  - name: Increase System Memory Usage
+    sysctl:
+      name: vm.max_map_count
+      value: 262144
+      state: present
+      reload: yes
+
+  - name: Install ELK Image
+    docker_container:
+      name: elk
+      image: sebp/elk:761
+      state: started
+      restart_policy: always
+      published_ports:
+        - 5601:5601
+        - 9200:9200
+        - 5044:5044
+
+  - name: Persistant Docker (systemd Configuration)
+    systemd:
+      name: docker
+      enabled: yes
