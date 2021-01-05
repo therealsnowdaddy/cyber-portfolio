@@ -82,9 +82,9 @@ A summary of the access policies in place can be found in the table below.
 | Web1       | — | X | — | — | TCP 6501, 5044, 9200 | ANY |
 | Web2       | — | — | X | — | TCP 6501, 5044, 9200 | ANY |
 | Web3       | — | — | — | X | TCP 6501, 5044, 9200 | ANY |
-||
+||||||||
 | ELKstackVM | — | — | — | — | X | ANY |
-||
+||||||||
 | ***Internet*** | TCP 22* | TCP 80** | TCP 80** | TCP 80** | TCP 6501* | X |
 
 *From specific IP address(es) [listed above] ONLY. 
