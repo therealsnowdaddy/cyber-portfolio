@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
+
 file_date=$1
 out_file="text_plogs_$1"
 tmp_file="text_plogs_tmp"

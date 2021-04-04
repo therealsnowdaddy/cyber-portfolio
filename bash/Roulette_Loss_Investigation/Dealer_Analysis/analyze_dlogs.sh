@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
+
 ## Variables
 
 file_date=$1

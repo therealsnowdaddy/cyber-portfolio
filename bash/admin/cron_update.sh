@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
 
 
 sudo apt update -y

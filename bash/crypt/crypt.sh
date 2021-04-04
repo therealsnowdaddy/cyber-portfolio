@@ -1,5 +1,7 @@
 #!/bin/bash
-# crypt.sh
+
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
 
 read -p "Path to input file:" in_file
 read -p "Encryption key:" enc_key

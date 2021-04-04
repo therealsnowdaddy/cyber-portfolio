@@ -1,4 +1,7 @@
+#!/usr/bin/python3
 #The honeycomb challenge - www.101computing.net/honeycomb-challenge/
+#Solution by Matt Snowball
+
 import turtle
 myPen = turtle.Turtle()
 myPen.shape("arrow")

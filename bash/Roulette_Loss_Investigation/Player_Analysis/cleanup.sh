@@ -1,4 +1,8 @@
 #/bin/bash
+
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
+
 out_file="plogs"
 sub_direct="pscripts"
 dest_direct="../Player_Dealer_Correlation/"

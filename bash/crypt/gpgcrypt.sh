@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
+
 #  gpgcrypt () {
  #       if [  ] ; then
 	case $1 in

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
+
 # Extract the username and its shell from /etc/passwd:
 #while IFS=: read -r user pass uid gid gecos home shell; do
 #  printf '%s: %s\n' "$user" "$shell"

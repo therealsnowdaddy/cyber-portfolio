@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Developed by Matt Snowball - Fall/Winter 2020/2021
 # stompground - A script to automate footprinting of target sites & systems
 
 #  RUN   AS   ROOT   !

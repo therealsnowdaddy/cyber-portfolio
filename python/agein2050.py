@@ -1,4 +1,7 @@
+#!/usr/bin/python3
 #How old will you be in 2050? -  www.101computing.net/year-2050
+#Solution by Matt Snowball
+
 import time
 
 now = time.time()

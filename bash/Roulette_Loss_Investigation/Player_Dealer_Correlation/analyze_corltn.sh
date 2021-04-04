@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
+
 file_date="$1_$2_$3"
 out_file="clogs"
 in_fileA="dlogs_0310_0312_0315_delim"

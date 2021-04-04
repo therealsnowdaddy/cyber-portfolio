@@ -1,4 +1,6 @@
+#!/usr/bin/python3
 #Alpha-Centauri Distance Converter - www.101computing.net/mission-alpha-centauri
+#Solution by Matt Snowball
 
 speedOfLight = 300000 #km/s
 destinations = []

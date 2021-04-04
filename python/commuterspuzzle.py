@@ -1,4 +1,7 @@
+#!/usr/bin/python3
 #The commuter's puzzle - www.101computing.net/to-the-moon-and-back
+#Solution by Matt Snowball
+
 kmPerMile = 1.609
 weeksPerYear = 52
 moonDistanceInKM = 383200

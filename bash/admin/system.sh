@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
 # INSTRUCTIONS: Edit the following placeholder command and output filepaths
 # For example: cpu_usage_tool > ~/backups/cpuuse/cpu_usage.txt
 # The cpu_usage_tool is the command and ~/backups/cpuuse/cpu_usage.txt is the filepath

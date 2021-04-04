@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
+
 cp dlogs_0310_0312_0315_delim dealer_by_time_data
 
 echo "Command structure: ./dealer_by_time.sh MMDD HH:MM:SS AM|PM"

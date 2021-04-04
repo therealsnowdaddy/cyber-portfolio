@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Developed by Matt Snowball - Fall/Winter 2020/2021 
+
 out_file="dlogs"
 
 ./analyze_${out_file}.sh $1
