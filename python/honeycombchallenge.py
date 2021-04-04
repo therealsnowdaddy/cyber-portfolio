@@ -3,13 +3,14 @@
 #Solution by Matt Snowball
 
 import turtle
+import time
 myPen = turtle.Turtle()
 myPen.shape("arrow")
 
 myPen.color("#a86f14")
 myPen.fillcolor("#efb456")
 myPen.pensize(2)
-myPen.delay(5) #Set the speed of the turtle
+myPen.speed(100) #Set the speed of the turtle
 
 #A Procedue to draw a pentagonal cavity at a given (x,y) position.
 def drawCavity(x,y,edgeLength):
@@ -32,3 +33,4 @@ for x in range(-150,150,60):
   drawCavity(x-30,150-51,20)
 
 myPen.hideturtle()
+time.sleep(5)

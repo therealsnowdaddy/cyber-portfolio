@@ -8,7 +8,7 @@ now = time.time()
 thisYear = int(1969 + now//(365*24*3600))
 
 print("We are in " + str(thisYear))
-age = int(input("How old are you?"))
+age = int(input("How old are you? "))
 
 birthYear = thisYear - age
 

@@ -28,7 +28,8 @@ def displayHeader():
     print("")
 
 def readPotionFile(intPotionIndex):
-    potionName = dictPotions.keys()[intPotionIndex - 1]
+    # intPotionFileIndex = intPotionIndex - 1
+    potionName = list(dictPotions.keys())[intPotionIndex - 1]
     print("\n\n")
     #Open text file in read mode
     file = open(dictPotions[potionName]["file"],"r")
@@ -60,7 +61,10 @@ def showPotionMenu():
 #          Main Program Starts Here           #
 ###############################################
 
-
-displayHeader()
-showPotionMenu()
-choosePotion()
+strContinue = "Y"
+while (strContinue == "y" or strContinue == "Y"):
+    displayHeader()
+    showPotionMenu()
+    choosePotion()
+    strContinue = input("\nWould you like to see another recipe?\n" +
+        "Press 'Y' to continue (any other key to exit): ")

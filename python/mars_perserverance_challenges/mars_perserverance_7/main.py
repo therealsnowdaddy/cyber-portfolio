@@ -2,6 +2,7 @@
 #Mars Perseverance Rover - Challenge #5 - www.101computing.net/mars-perseverance-rover/
 #Solution by Matt Snowball
 import turtle
+import time
 screen = turtle.Screen()
 
 # this assures that the size of the screen will always be 400x400 ...
@@ -10,7 +11,7 @@ screen.bgpic("mars-path-6.png")
 
 # Initialise the rover...
 rover = turtle.Turtle()
-screen.addshape("rover.png")
+screen.register_shape("rover.png", ((0,0), (22,30)))
 rover.shape("rover.png")
 rover.speed(100)
 
@@ -36,3 +37,4 @@ for i in range(len(listAngles)):
     print(listDistances[i])
     turnAndBurn(listAngles[i],listDistances[i])
 
+time.sleep(5)

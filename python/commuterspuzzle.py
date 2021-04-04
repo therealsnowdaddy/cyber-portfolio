@@ -30,6 +30,7 @@ while distTravelledInKM < (moonDistanceInKM * 2):
 weeksTravelled = daysTravelled/workDaysPerWeek
 yearsTravelled = weeksTravelled/weeksPerYear
 
+print("Distance travelled equals that of a trip to the moon and back after:\n")
 print("Days: " + str(daysTravelled))
 print("Weeks: " + str(weeksTravelled))
 print("Years: " + str(yearsTravelled))

@@ -3,6 +3,7 @@
 #Solution by Matt Snowball
 
 import turtle
+import time
 screen = turtle.Screen()
 
 # this assures that the size of the screen will always be 400x400 ...
@@ -11,7 +12,7 @@ screen.bgpic("mars-path-2.png")
 
 # Initialise the rover...
 rover = turtle.Turtle()
-screen.addshape("rover.png")
+screen.register_shape("rover.png", ((0,0), (22,30)))
 rover.shape("rover.png")
 rover.speed(100)
 
@@ -51,3 +52,4 @@ moveAcross()
 leftTurn()
 moveAcross()
 
+time.sleep(5)

@@ -29,11 +29,16 @@ while loopFlag == 1:
   for i in range(0,numDestinations,1):
     print(str(i + 1) + ". " + str(destinations[i][0]))
   
-  destChoice = int(input("Please enter a choice from the list above, or anything else to exit."))
+  destChoice = input("Please enter a choice from the list above (anything else to exit): ")
   # distance = ( secondsInYear * speedOfLight ) * alphaCentauri
   
-  if destChoice > 0 and destChoice < 6:
+  try:
+    destChoice = int(destChoice)
+  except Exception:
+    exit()
+  
+  if (destChoice > 0 and destChoice < 6):
     distanceTo(destChoice)
   else:
     loopFlag = 0
-    exit
+    exit()
